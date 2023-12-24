@@ -60,7 +60,10 @@ class MainActivity : ComponentActivity() {
  */
 @Composable
 fun MainScreen() {
-
+    /**
+     * by remember and mutableStateOf is special functions
+     * that dynamically changes and force ui to refresh mutable components.
+     */
     var counter by remember {
         mutableIntStateOf(0)
     }
