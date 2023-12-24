@@ -3,14 +3,29 @@ package com.example.counter
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Add
+import androidx.compose.material.icons.rounded.Refresh
+import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.counter.ui.theme.CounterTheme
 
@@ -42,13 +57,80 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen() {
     /**
-     * Text is the TextView. It also has attributes, and here are some of them.
+     * Column is view container, in the other words it is a Vertical LinearLayout.
      */
-    Text(
-        text = "Hello Jetpack Compose World!",
-        fontSize = 28.sp,
-        color = MaterialTheme.colorScheme.error
-    )
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally //centralize the views in Column
+    ) {
+        /**
+         * Text is the TextView. It also has attributes, and here are some of them.
+         */
+        Text(
+            modifier = Modifier.padding(20.dp),
+            text = "Hello, Counter in Jetpack Compose!",
+            fontSize = 28.sp,
+            color = MaterialTheme.colorScheme.secondary,
+            textAlign = TextAlign.Center,
+            fontWeight = FontWeight.Bold
+        )
+
+        /**
+         * Box is useful view container.
+         */
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Column(modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally) {
+
+                Text(
+                    modifier = Modifier.padding(bottom = 50.dp),
+                    text = "0",
+                    fontSize = 32.sp,
+                    color = MaterialTheme.colorScheme.secondary,
+                    textAlign = TextAlign.Center,
+                    fontWeight = FontWeight.Bold
+                )
+
+                Row {
+                    /**
+                     * Button in compose built like a container.
+                     */
+                    Button(
+                        modifier = Modifier.size(70.dp, 50.dp),
+                        onClick = { /*TODO*/ }
+                    ) {
+                        Text(
+                            text = "-",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+
+                    /**
+                     * Spacer is view, mostly used to fill space between other views.
+                     */
+                    Spacer(modifier = Modifier.size(20.dp))
+
+                    Button(
+                        modifier = Modifier.size(70.dp, 50.dp),
+                        onClick = { /*TODO*/ }
+                    ) {
+                        Icon(Icons.Rounded.Add, contentDescription = "")
+                    }
+                }
+                Button(
+                    modifier = Modifier.padding(top = 70.dp),
+                    onClick = { /*TODO*/ }
+                ) {
+                    Icon(Icons.Rounded.Refresh, contentDescription = "")
+                }
+            }
+        }
+    }
 }
 
 /**
