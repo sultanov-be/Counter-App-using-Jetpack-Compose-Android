@@ -20,6 +20,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -56,6 +60,11 @@ class MainActivity : ComponentActivity() {
  */
 @Composable
 fun MainScreen() {
+
+    var counter by remember {
+        mutableIntStateOf(0)
+    }
+
     /**
      * Column is view container, in the other words it is a Vertical LinearLayout.
      */
@@ -82,13 +91,15 @@ fun MainScreen() {
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-            Column(modifier = Modifier.fillMaxSize(),
+            Column(
+                modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally) {
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
 
                 Text(
                     modifier = Modifier.padding(bottom = 50.dp),
-                    text = "0",
+                    text = "$counter",
                     fontSize = 32.sp,
                     color = MaterialTheme.colorScheme.secondary,
                     textAlign = TextAlign.Center,
@@ -101,7 +112,9 @@ fun MainScreen() {
                      */
                     Button(
                         modifier = Modifier.size(70.dp, 50.dp),
-                        onClick = { /*TODO*/ }
+                        onClick = {
+                            if (counter != 0) counter--
+                        }
                     ) {
                         Text(
                             text = "-",
@@ -117,14 +130,18 @@ fun MainScreen() {
 
                     Button(
                         modifier = Modifier.size(70.dp, 50.dp),
-                        onClick = { /*TODO*/ }
+                        onClick = {
+                            counter++
+                        }
                     ) {
                         Icon(Icons.Rounded.Add, contentDescription = "")
                     }
                 }
                 Button(
                     modifier = Modifier.padding(top = 70.dp),
-                    onClick = { /*TODO*/ }
+                    onClick = {
+                        counter = 0
+                    }
                 ) {
                     Icon(Icons.Rounded.Refresh, contentDescription = "")
                 }
